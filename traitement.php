@@ -19,10 +19,9 @@
             ];
     
             $_SESSION['products'][]= $product; //session contient les données stockées dans la session utilisateur côté serveur
-    
+
         }
+        echo "<script>alert('Ajout effectué')</script>";
+
     }
-
-    // hamngsbu9v58cou6rqjb53l8m1
-
     header("Location:index.php"); //a mettre en tout dernier
