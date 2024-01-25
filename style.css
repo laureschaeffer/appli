@@ -7,7 +7,7 @@
 #card{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
     background:rgb(238, 218, 195);
-    width: 10vw;
+    width: 200px;
     height: 80px;
     border-radius: 10px;
     text-align: center;
@@ -34,4 +34,11 @@ nav a{
     padding: 1%;
     font-size: x-large;
     /* text-decoration: none; */
+}
+.fa-solid, .fas{
+    color: black;
+}
+
+tbody td{
+    padding: 1% 2%;
 }

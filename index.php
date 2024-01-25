@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start(); //pour récupérer les données utilisateurs
 ?>
 
 <!DOCTYPE html>
@@ -44,15 +44,23 @@
 
 <?php
 
-$totalQtt=0;
+if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
+    // s'il n'y a rien, la page affiche seulement le formulaire ; sans cette condition la page affiche une erreur
+} else {
 
-foreach($_SESSION['products'] as $index => $product){
-    $totalQtt+=$product['qtt'];
-    
-}
+    $totalQtt=0;
+
+    foreach($_SESSION['products'] as $index => $product){
+        $totalQtt+=$product['qtt'];
+    }
     echo "<div id='card'>",
             "<p>Nombre total d'articles : ".$totalQtt." </p>",
         "</div>";
+// card montrant le total d'articles, en commun avec le recap
+}
+if(isset($_POST['submit'])){
+    echo "<script>alert('Ajouté')</script>";
+}
 
 ?>
 
