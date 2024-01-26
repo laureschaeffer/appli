@@ -1,23 +1,11 @@
 <?php
-    session_start(); //pour récupérer les données utilisateurs
+session_start();
+//------------------------------------------fichier pour afficher le récapitulatif de commande-----------------------------
+
+ //pour récupérer les données utilisateurs
+    ob_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="style.css" rel="stylesheet"/>
-    <title>Récapitulatif des produits</title>
-</head>
-<body>
-
-    <nav>
-        <a href="http://localhost/laure_schaeffer/appli/index.php">Index</a>
-        <a href="http://localhost/laure_schaeffer/appli/recap.php">Recap</a>
-    </nav>
-    <h1>Récapitulatif des produits</h1>
     <?php
     if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
         echo "<p> Aucun produit en session... </p>";
@@ -54,9 +42,7 @@
 
                 "</tr>";
             $totalGeneral+= $product['total'];
-            $totalQtt+= $product['qtt'];
         } 
-
         echo "<tr>",
                 "<td colspan=4> Total général : </td>",
                 "<td> <strong>".number_format($totalGeneral, 2, ",", "&nbssp;")."&nbsp;€ </strong> </td>",
@@ -67,15 +53,13 @@
             "</tr>",
         "</tbody>",
         "</table>",
-
-
-        // card montrant le total d'articles, en commun avec l'index
-        "<div id='card'>",
-            "<p>Nombre total d'articles : ".$totalQtt." </p>",
-        "</div>",
         "</session>";
 
     }
+
+
+    $title = "Récap des produits";
+    $content= ob_get_clean();
+    require_once "template.php"; 
+
     ?>
-</body>
-</html>
