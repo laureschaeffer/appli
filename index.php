@@ -28,6 +28,15 @@
                 </label>
             </p>
             <p>
+                <label>
+                    <textarea name="description">Description du produit</textarea>
+                </label>
+            </p>
+            <p>
+                <label>Choisissez une photo du produit</label> <br>
+                <input type="file" name="file" accept="image/png, image/jpeg" />
+            </p>
+            <p>
                 <input type="submit" name="submit" value="Ajouter le produit">
             </p>
         </form>

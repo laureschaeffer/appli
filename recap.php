@@ -20,6 +20,7 @@ session_start();
                         "<th>Prix</th>",
                         "<th>Quantité</th>",
                         "<th>Total</th>",
+                        "<th>Descriptif</th>",
                         "<th>Supprimer catégorie</th>",
                     "</tr>",
                 "</thead>",
@@ -38,6 +39,7 @@ session_start();
                         "<a href='traitement.php?action=add&id=$index'><i class='fa-solid fa-plus'></a></i>",
                     "</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbssp;")."&nbsp;€ </td>",
+                    // "<td>".$product."<td>", chercher description
                     "<td><a href='traitement.php?action=delete&id=$index'><i class='fa-solid fa-xmark'></i></a></td>",
 
                 "</tr>";
@@ -56,7 +58,7 @@ session_start();
         "</session>";
 
     }
-
+var_dump($_SESSION);
 
     $title = "Récap des produits";
     $content= ob_get_clean();
