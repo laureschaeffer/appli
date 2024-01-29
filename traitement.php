@@ -35,13 +35,29 @@
                         $_SESSION['products'][]= $product;
                     }
                 }
+    // ----------------upload pictures-----------------
 
                 if(isset($_FILES['file'])){
                     $tmpName = $_FILES['file']['tmp_name'];
                     $fileName = $_FILES['file']['name'];
                     $fileSize = $_FILES['file']['size'];
                     $fileError = $_FILES['file']['error'];
-                    $file = $_FILES['file']['type'];
+                    // https://www.php.net/manual/en/features.file-upload.errors.php
+                    $fileType = $_FILES['file']['type'];
+
+                    $labelExtension = explode(".", $fileName);
+                    $extension = strtolower(end($labelExtension)); //manipulations pour récupérer le type de fichier
+
+                    $extensionsAutorisees= ["jpg", "jpeg", "gif", "png"];
+                    $uniqueName= uniqid("", true);
+                    // si plusieurs personnes utilisent le meme nom ça va écraser l'ancien fichier du meme nom, la fonction génère un nom unique
+                    $newFileName= $uniqueName.".".$extension;
+                    // newFileName= "id.jpg" par exemple
+
+                    if(in_array($extension, $extensionsAutorisees) && $fileError==0){
+                        move_uploaded_file($tmpName, './upload/'.$newFileName);
+                    }
+                    $_SESSION['nameFile'][]=$newFileName;
 
                 }
 

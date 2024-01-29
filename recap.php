@@ -15,12 +15,13 @@ session_start();
             "<table>",
                 "<thead>",
                     "<tr>",
-                        "<th>#</th>",
+                        // "<th>#</th>",
                         "<th>Nom</th>",
                         "<th>Prix</th>",
                         "<th>Quantité</th>",
                         "<th>Total</th>",
                         "<th>Descriptif</th>",
+                        "<th>Image</th>",
                         "<th>Supprimer catégorie</th>",
                     "</tr>",
                 "</thead>",
@@ -30,7 +31,7 @@ session_start();
 
         foreach($_SESSION['products'] as $index => $product){ // boucle pour afficher tout le panier, number_format pour un meilleur affichage des prix
             echo "<tr>",
-                    "<td>".$index."</td>",
+                    // "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbssp;")."&nbsp;€ </td>",
                     "<td>", //retirer ou ajouter une quantité
@@ -39,15 +40,42 @@ session_start();
                         "<a href='traitement.php?action=add&id=$index'><i class='fa-solid fa-plus'></a></i>",
                     "</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbssp;")."&nbsp;€ </td>",
-                    // "<td>".$product."<td>", chercher description
-                    "<td><a href='traitement.php?action=delete&id=$index'><i class='fa-solid fa-xmark'></i></a></td>",
+                    "<td>".$product['description']."<td>",
+                      // <!-- Modal -->
+                    // Bouton pour ouvrir le modal
+                    "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>",
+                    "Afficher l'image du produit",
+                    "</button>",
+                    "<div class='modal' id='myModal'>",
+                        "<div class='modal-dialog'>",
+                            "<div class='modal-content'>",
+                            // tete du modal
+                                "<div class='modal-header'>",
+                                    "<h4 class='modal-title'>Image du produit</h4>",
+                                    "<button type='button' class='close' data-dismiss='modal'>&times;</button>",
+                                "</div>";
+                                $tailleTab=count($_SESSION['nameFile']);
+                            for ($i=0 ; $i<$tailleTab; $i++){
+                                echo "<div class='modal-body>",
+                                "<img src='./upload/".$_SESSION['nameFile'][$i]."' alt ='photo du produit' height='200px' width='200px'>",
+                                "</div>";
 
-                "</tr>";
+                            }
+
+                // Footer du modal
+                     echo  "<div class='modal-footer'>",
+                            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>",
+                        "</div>",
+                    "</div>",
+                "</div>",
+            "</div>",
+            "<a href='traitement.php?action=delete&id=$index'><i class='fa-solid fa-xmark'></i></a>",
+            "</tr>";}
             $totalGeneral+= $product['total'];
-        } 
+
         echo "<tr>",
                 "<td colspan=4> Total général : </td>",
-                "<td> <strong>".number_format($totalGeneral, 2, ",", "&nbssp;")."&nbsp;€ </strong> </td>",
+                "<td> <strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€ </strong> </td>",
             "<tr>",
             "<tr>",
                 "<td colspan=4> Supprimer le panier : </td>",
@@ -55,14 +83,10 @@ session_start();
             "</tr>",
         "</tbody>",
         "</table>",
-        "</session>";
+        "</section>";
+        }
 
-    }
-
-
-    var_dump($_FILES);
     $title = "Récap des produits";
     $content= ob_get_clean();
     require_once "template.php"; 
-
     ?>

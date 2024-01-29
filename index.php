@@ -29,7 +29,7 @@
             </p>
             <p>
                 <label>
-                    <textarea name="description">Description du produit</textarea>
+                    <textarea name="description" rows="4" cols="50" >Description du produit</textarea>
                 </label>
             </p>
             <p>
@@ -45,7 +45,6 @@
 
 <?php
 
-var_dump($_FILES);
 $title = "Ajouter un produit";
 $content= ob_get_clean();
 require_once "template.php"; 
