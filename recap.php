@@ -43,9 +43,10 @@ session_start();
                     "<td>".$product['description']."<td>",
                       // <!-- Modal -->
                     // Bouton pour ouvrir le modal
-                    "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>",
+                    "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#myModal'>",
                     "Afficher l'image du produit",
                     "</button>",
+                    //contenu du modal
                     "<div class='modal' id='myModal'>",
                         "<div class='modal-dialog'>",
                             "<div class='modal-content'>",
@@ -53,38 +54,35 @@ session_start();
                                 "<div class='modal-header'>",
                                     "<h4 class='modal-title'>Image du produit</h4>",
                                     "<button type='button' class='close' data-dismiss='modal'>&times;</button>",
-                                "</div>";
-                                $tailleTab=count($_SESSION['nameFile']);
-                            for ($i=0 ; $i<$tailleTab; $i++){
-                                echo "<div class='modal-body>",
-                                "<img src='./upload/".$_SESSION['nameFile'][$i]."' alt ='photo du produit' height='200px' width='200px'>",
-                                "</div>";
-
-                            }
-
-                // Footer du modal
-                     echo  "<div class='modal-footer'>",
-                            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>",
+                                "</div>",
+                                "<div class='modal-body>",
+                                    "<img src='./upload/".$_SESSION['nameFile'][$index]."' alt ='photo du produit' height='200px' width='200px'>",
+                                "</div>",
+                                "<div class='modal-footer'>",
+                                    "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>",
+                                "</div>",
+                            "</div>",
                         "</div>",
                     "</div>",
-                "</div>",
-            "</div>",
-            "<a href='traitement.php?action=delete&id=$index'><i class='fa-solid fa-xmark'></i></a>",
-            "</tr>";}
-            $totalGeneral+= $product['total'];
+                    "<a href='traitement.php?action=delete&id=$index'><i class='fa-solid fa-xmark'></i></a>",
+                "</tr>";
+                $totalGeneral+= $product['total'];
 
-        echo "<tr>",
-                "<td colspan=4> Total général : </td>",
-                "<td> <strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€ </strong> </td>",
-            "<tr>",
-            "<tr>",
-                "<td colspan=4> Supprimer le panier : </td>",
-                "<td><a href='traitement.php?action=deleteEverything'><i class='fa-solid fa-trash'></i></a></td>",
-            "</tr>",
-        "</tbody>",
-        "</table>",
-        "</section>";
+
         }
+            echo "<tr>",
+                        "<td colspan=4> Total général : </td>",
+                        "<td> <strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€ </strong> </td>",
+                    "</tr>",
+                    "<tr>",
+                        "<td colspan=4> Supprimer le panier : </td>",
+                        "<td><a href='traitement.php?action=deleteEverything'><i class='fa-solid fa-trash'></i></a></td>",
+                    "</tr>",
+                    "</tbody>",
+                "</table>",
+            "</section>";
+    }
+
 
     $title = "Récap des produits";
     $content= ob_get_clean();
