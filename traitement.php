@@ -29,12 +29,22 @@
                             "price" => $price,
                             "qtt" => $qtt,
                             "total" => $price*$qtt,
-                            "description" => $description
+                            "description" => $description,
                         ];
                         // si on veut éviter les doublons cette fonction existe: $product = array_unique($product);
                         $_SESSION['products'][]= $product;
                     }
                 }
+
+                if(isset($_FILES['file'])){
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $fileName = $_FILES['file']['name'];
+                    $fileSize = $_FILES['file']['size'];
+                    $fileError = $_FILES['file']['error'];
+                    $file = $_FILES['file']['type'];
+
+                }
+
                 $_SESSION['messages'][] = "Produit $name ajouté";
                 header("Location:index.php"); //a mettre en dernier, renvoie à l'index une fois le formulaire envoyé, correct ou non
                 exit;

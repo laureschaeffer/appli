@@ -58,8 +58,9 @@ session_start();
         "</session>";
 
     }
-var_dump($_SESSION);
 
+
+    var_dump($_FILES);
     $title = "Récap des produits";
     $content= ob_get_clean();
     require_once "template.php"; 

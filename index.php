@@ -7,7 +7,7 @@
 ?>
 
     <section id="container">
-        <form action="traitement.php?action=addProduct" method="post"> 
+        <form action="traitement.php?action=addProduct" method="post" enctype="multipart/form-data"> 
         <!-- action pour la cible du formulaire, method http pour transmettre au serveur -->
             <p>
                 <label>
@@ -33,8 +33,10 @@
                 </label>
             </p>
             <p>
-                <label>Choisissez une photo du produit</label> <br>
-                <input type="file" name="file" accept="image/png, image/jpeg" />
+                <label for="file">
+                    <input type="file" name="file"/>
+                </label>
+
             </p>
             <p>
                 <input type="submit" name="submit" value="Ajouter le produit">
@@ -43,10 +45,9 @@
 
 <?php
 
-
+var_dump($_FILES);
 $title = "Ajouter un produit";
 $content= ob_get_clean();
 require_once "template.php"; 
-
 
 ?>
