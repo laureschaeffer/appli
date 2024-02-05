@@ -16,4 +16,4 @@
 
 
 ### Utilisation:
-Bootrsap, javascript, CSS, temporisation de sortie
+bootstrap, javascript, CSS, temporisation de sortie
