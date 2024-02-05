@@ -2,10 +2,10 @@
 
 Permet à un utilisateur de:
 
--- **Ajouter un produit**
--- **Retirer produit**
--- **Supprimer catégorie de produit**
--- **Supprimer son panier**
+ **Ajouter un produit**
+ **Retirer produit**
+ **Supprimer catégorie de produit**
+ **Supprimer son panier**
 
 ### Affichage :
 
